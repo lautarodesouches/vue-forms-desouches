@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main class='main'>
+    <FormularioPrincipal />
+    <TablaPrincipal />
+  </main>
 </template>
-
+<!----------------------------------------------------------------------------------------------------------------->
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormularioPrincipal from './components/FormularioPrincipal.vue';
+import TablaPrincipal from './components/TablaPrincipal.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FormularioPrincipal,
+    TablaPrincipal
   }
 }
 </script>
-
+<!----------------------------------------------------------------------------------------------------------------->
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #3739b8, rgb(134, 151, 227));
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
