@@ -1,7 +1,7 @@
 <template>
   <main class='main'>
-    <FormularioPrincipal />
-    <TablaPrincipal />
+    <FormularioPrincipal :addData='addData' />
+    <TablaPrincipal :data='data' />
   </main>
 </template>
 <!----------------------------------------------------------------------------------------------------------------->
@@ -14,6 +14,16 @@ export default {
   components: {
     FormularioPrincipal,
     TablaPrincipal
+  },
+  data() {
+    return {
+      data: []
+    }
+  },
+  methods: {
+    addData(form) {
+      this.data.push(form)
+    }
   }
 }
 </script>
@@ -21,16 +31,23 @@ export default {
 <style>
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.main {
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(to bottom right, #3739b8, rgb(134, 151, 227));
+.app{
   margin: 0;
   padding: 0;
+}
+.main {
+  padding: 5%;
+  width: 90%;
+  height: 90vh;
+  background: linear-gradient(to bottom right, #3739b8, rgb(134, 151, 227));
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 </style>
