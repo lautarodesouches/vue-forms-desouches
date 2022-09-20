@@ -64,10 +64,16 @@ export default {
       user: { value: '', error: '' },
       course: { value: '', error: '' },
       colors: { value: [], error: '' },
-      bot: { result: 0, value: true, error: '' }
+      bot: { result: null, value: true, error: '' }
     }
   },
   methods: {
+    resetForm() {
+      this.user.value = ''
+      this.course.value = ''
+      this.colors.value = []
+      this.bot.value = null
+    },
     cleanErrors() {
       this.user.error = ''
       this.course.error = ''
@@ -114,6 +120,8 @@ export default {
       }
 
       this.addData(form)
+
+      this.resetForm()
     }
   }
 }
