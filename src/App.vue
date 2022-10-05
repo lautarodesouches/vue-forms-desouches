@@ -1,29 +1,20 @@
 <template>
   <main class='main'>
-    <FormularioPrincipal :addData='addData' />
-    <TablaPrincipal :data='data' />
+    <div class='div' v-if='this.$store.getters.getLoading'>
+      <h2 class='loading'>Cargando...</h2>
+    </div>
+    <div class='div' v-if='!this.$store.getters.getLoading'>
+      <router-view />
+    </div>
   </main>
 </template>
 <!----------------------------------------------------------------------------------------------------------------->
 <script>
-import FormularioPrincipal from './components/FormularioPrincipal.vue';
-import TablaPrincipal from './components/TablaPrincipal.vue';
-
+// --------------------------
 export default {
   name: 'App',
-  components: {
-    FormularioPrincipal,
-    TablaPrincipal
-  },
-  data() {
-    return {
-      data: []
-    }
-  },
-  methods: {
-    addData(form) {
-      this.data.push(form)
-    }
+  created(){
+    this.$store.dispatch('fetchData')
   }
 }
 </script>
@@ -34,14 +25,19 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-.app{
-  margin: 0;
-  padding: 0;
+
+.div{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
 .main {
-  padding: 5%;
-  width: 90%;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(to bottom right, #3739b8, rgb(134, 151, 227));
   margin: 0;
   display: flex;
@@ -49,5 +45,23 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
+}
+
+.button {
+  margin: 2rem auto 0 auto;
+  font-size: 1rem;
+  background: #ff5100;
+  color: #fff;
+  padding: 5px 25px;
+  border-radius: 5px;
+  border: 1px solid #e74d06;
+  transition: all 1s;
+  cursor: pointer;
+}
+
+.loading {
+  background: #fff;
+  border-radius: 5px;
+  padding: .5rem 1.5rem;
 }
 </style>

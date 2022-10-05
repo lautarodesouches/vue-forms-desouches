@@ -51,14 +51,16 @@
       <button class='form__button'>Enviar</button>
     </div>
   </form>
+  <div>
+    <router-link to='/data'>
+      <button class='button'>Ver datos</button>
+    </router-link>
+  </div>
 </template>
 <!----------------------------------------------------------------------------------------------------------------->
 <script>
 export default {
-  name: 'FormularioPrincipal',
-  props: {
-    addData: Function
-  },
+  name: 'MainForm',
   data() {
     return {
       user: { value: '', error: '' },
@@ -81,6 +83,8 @@ export default {
       this.bot.error = ''
     },
     validateForm() {
+
+      this.$store.dispatch('validatingForm')
 
       this.cleanErrors()
 
@@ -119,7 +123,7 @@ export default {
         bot: this.bot.value
       }
 
-      this.addData(form)
+      this.$store.dispatch('addData', form)
 
       this.resetForm()
     }

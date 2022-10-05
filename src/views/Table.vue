@@ -1,12 +1,12 @@
 <template>
-  <table class='table' v-if='data.length > 0'>
+  <table class='table' v-if='this.$store.getters.getData.length > 0'>
     <tr class='table__tr'>
       <th class='table__th'>Usuario</th>
       <th class='table__th'>Curso</th>
       <th class='table__th'>Colores</th>
       <th class='table__th'>Bot</th>
     </tr>
-    <tr v-for='item in data' :key='item.id' class='table__tr'>
+    <tr v-for='item in this.$store.getters.getData' :key='item.id' class='table__tr'>
       <td class='table__th'>{{item.user}}</td>
       <td class='table__th'>{{item.course}}</td>
       <td class='table__th'>
@@ -18,14 +18,19 @@
       <td class='table__th'>{{item.bot ? 'Si' : 'No'}}</td>
     </tr>
   </table>
+  <div class='empty' v-if='this.$store.getters.getData.length < 1'>
+    <h3>No hay datos, intenta agregar alguno llendo al formulario</h3>
+  </div>
+  <div>
+    <router-link to='/'>
+      <button class='button'>Ir al formulario</button>
+    </router-link>
+  </div>
 </template>
 <!----------------------------------------------------------------------------------------------------------------->
 <script>
 export default {
-  name: 'TablaPrincipal',
-  props: {
-    data: Array
-  }
+  name: 'MainTable'
 }
 </script>
 <!----------------------------------------------------------------------------------------------------------------->
@@ -49,5 +54,11 @@ export default {
   padding: 3px;
   margin: 0;
   border: 1px solid #d1d1d1;
+}
+
+.empty{
+  background: #fff;
+  padding: .3rem 1rem;
+  border-radius: 5px;
 }
 </style>
